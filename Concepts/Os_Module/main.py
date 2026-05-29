@@ -15,4 +15,13 @@ if not os.path.exists("Experiment"):
 # for i in range(5):
 #     os.mkdir(f"Experiment/Day{i+1}")
 
+# for i in range(5):
+#     os.rename(f"Experiment/Test{i+1}" , f"Experiment/Test_{i+1}")
+
+for i in range(5):
+    folder_name = f"Experiment/Test_{i+1}"
+    file_path = f"{folder_name}/main.py"
+    with open(file_path,"w") as file:
+        file.write("# A Test Python file\n")
+
 
