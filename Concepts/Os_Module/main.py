@@ -12,4 +12,7 @@ if os.getcwd() != target_dir:
 if not os.path.exists("Experiment"):
     os.mkdir("Experiment")
 
+# for i in range(5):
+#     os.mkdir(f"Experiment/Day{i+1}")
+
 
