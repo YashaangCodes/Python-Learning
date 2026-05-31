@@ -4,6 +4,21 @@ def Account_Setup():
     primay_balance = float(input("Enter the Primary Balance : "))
     Action_Window()
 
+def Deposit():
+    pass
+
+def Withdraw():
+    pass
+
+def Check_Balance():
+    pass
+
+def View_History():
+    pass
+
+def Quit():
+    print("Thank You for Trusting Us... Haave a Good Day")
+
 def Action_Window():
     para = """
     What Action do you want to perform :
