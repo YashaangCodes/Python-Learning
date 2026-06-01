@@ -1,59 +1,42 @@
 def Account_Setup():
-    global user_name, primay_balance
-    user_name = input("Enter the Account holder's Name : ")
-    primay_balance = float(input("Enter the Primary Balance : "))
-    Action_Window()
+    print("Acc will be created")
 
 def Deposit():
-    pass
+    print("Money will be deposited")
 
 def Withdraw():
-    pass
+    print("Money is Withdrawn")
 
 def Check_Balance():
-    pass
+    print("Balance will be checked")
 
 def View_History():
-    pass
+    print("History will be showed")
 
-def Quit():
-    print("Thank You for Trusting Us... Haave a Good Day")
-    return 1
-
-
-def Action_Window():
+def Interface_Window():
     para = """
-    What Action do you want to perform :
-    1] Create Account
-    2] Deposit
-    3] Withdraw
-    4] Check Current Balance
-    5] View Transaction History
-    6] Quit
-    """
-    print(para)
+        What Action do you want to perform :
+        1] Create Account
+        2] Deposit
+        3] Withdraw
+        4] Check Current Balance
+        5] View Transaction History
+        6] Quit
+        """
+    ac_dict = { "1" : Account_Setup , "2" : Deposit , "3" : Withdraw , "4" : Check_Balance , "5" : View_History }
 
-    action = input("Either Enter the number or the word (EG - 2 OR Deposit) : ").strip().capitalize()
+    while True:
+        
+        print(para)
+        
+        action = input("Enter the Number corresponding to the action (Eg - For Deposit enter 2)) : ")
+        
+        if action in ac_dict:
+            ac_dict[action]()
+        elif action == "6":
+            print("Thank You for Trusting Us... Have a Good Day")
+            break
+        else :
+            print("Invalid Action")
 
-    action_dict = {"1" : "Create Account", "2" : "Deposit", "3" : "Withdraw", "4" : "Check Current Balance", "5" : "View Transaction History", "6" : "Quit"}
-
-    if action not in action_dict.keys() and action not in action_dict.values():
-        print("Invalid Action")
-        Action_Window()
-    
-    if action in ["1" , "Create Account"]:
-        Account_Setup()
-    elif action in ["2" , "Deposit"] :
-        Deposit()
-    elif action in ["3" , "Withdraw"] :
-        Withdraw()
-    elif action in ["4" , "Check Current Balance"] :
-        Check_Balance()
-    elif action in ["5" , "View Transaction History"] :
-        View_History()
-    else :
-        Quit()
-    return 1
-
-
-Action_Window()
+Interface_Window()
