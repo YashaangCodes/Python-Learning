@@ -1,3 +1,5 @@
+Learning Python and building projects.
+
 # Banking System
 
 A simple banking system built using Python.
