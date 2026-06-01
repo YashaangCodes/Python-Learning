@@ -41,15 +41,15 @@ def Action_Window():
         print("Invalid Action")
         Action_Window()
     
-    if action == "1" or action == "Create Account" :
+    if action in ["1" , "Create Account"]:
         Account_Setup()
-    elif action == "2" or action == "Deposit" :
+    elif action in ["2" , "Deposit"] :
         Deposit()
-    elif action == "3" or action == "Withdraw" :
+    elif action in ["3" , "Withdraw"] :
         Withdraw()
-    elif action == "4" or action == "Check Current Balance" :
+    elif action in ["4" , "Check Current Balance"] :
         Check_Balance()
-    elif action == "5" or action == "View Transaction History" :
+    elif action in ["5" , "View Transaction History"] :
         View_History()
     else :
         Quit()
