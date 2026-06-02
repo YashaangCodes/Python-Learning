@@ -28,7 +28,7 @@ def account_setup():
     file_balance = os.path.join(cur_dir, user_name, "balance.txt")
     
     with open(filepath, "w") as file :
-        file.write(f"Account Holder's Name : {user_name}\nPrimary Balance : {prm_balance}\n")
+        file.write(f"Account Holder's Name : {user_name}\nPrimary Balance : {prm_balance}\n\nTransaction History :- \n")
 
     save_balance(file_balance,prm_balance)
 
@@ -36,7 +36,7 @@ def account_setup():
 
 def deposit():
     
-    user_name = input("Enter Account Holder's Name : ")
+    user_name = input("Enter Account Holder's Name into which you want to deposit: ")
     dp_money = int(input("Enter the amount you want to Deposit : "))
 
     filepath = os.path.join(cur_dir, user_name, "info.txt")
@@ -47,15 +47,26 @@ def deposit():
     save_balance(file_balance, balance)
 
     with open(filepath, "a") as file:
-        file.write(f"Deposited : +{dp_money}")
+        file.write(f"Deposited : +{dp_money}\n")
 
 
 def withdraw():
-    print("Money is Withdrawn")
+    user_name = input("Enter Account Holder's Name from which you want to withdraw: ")
+    wd_money = int(input("Enter the amount you want to Withdraw : "))
+
+    filepath = os.path.join(cur_dir, user_name, "info.txt")
+    file_balance = os.path.join(cur_dir, user_name, "balance.txt")
+
+    balance = get_balance(file_balance) - wd_money
+
+    save_balance(file_balance, balance)
+
+    with open(filepath, "a") as file:
+        file.write(f"Withdrawn : -{wd_money}\n")
 
 def check_balance():
     
-    user_name = input("Enter Account Holder's Name : ")
+    user_name = input("Enter Account Holder's Name whose balance you want to check: ")
     file_balance = os.path.join(cur_dir, user_name, "balance.txt")
     balance = get_balance(file_balance)
     
