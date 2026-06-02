@@ -1,10 +1,20 @@
 import os
 
+def get_balance(info_path):
+    with open(info_path, "r") as file:
+        line = file.readline()
+    
+    return int(line.split("=")[1])
+    
+
+def save_balance(info_path,base_balance):
+    with open(info_path, "w") as file :
+        file.write(f"Balance={base_balance}")
+
+
 def account_setup():
 
     user_name = input("Enter Account Holder's Name : ")
-
-    cur_dir = os.getcwd()
 
     if not os.path.exists(f"{cur_dir}/{user_name}"):
         os.mkdir(f"{cur_dir}/{user_name}")
@@ -15,11 +25,14 @@ def account_setup():
     prm_balance = int(input("Enter the primary Balance : "))
 
     filepath = os.path.join(cur_dir, user_name, "info.txt")
-
+    file_balance = os.path.join(cur_dir, user_name, "balance.txt")
+    
     with open(filepath, "w") as file :
-        file.write(f"Account Holder's Name : {user_name}\n Primary Balance : {prm_balance}\n")
+        file.write(f"Account Holder's Name : {user_name}\nPrimary Balance : {prm_balance}\n")
 
+    save_balance(file_balance,prm_balance)
 
+    
 
 def deposit():
     print("Money will be deposited")
@@ -28,21 +41,27 @@ def withdraw():
     print("Money is Withdrawn")
 
 def check_balance():
-    print("Balance")
     
+    user_name = input("Enter Account Holder's Name : ")
+    file_balance = os.path.join(cur_dir, user_name, "balance.txt")
+    balance = get_balance(file_balance)
+    
+    print(f"Your Current Balance is : {balance}")
+
+
 def view_history():
     print("History will be showed")
 
 def delete_account():
     
-    cur_dir = os.getcwd()
-
     del_name = input("Enter the Account's Name which you want to delete : ")
 
     if os.path.exists(f"{cur_dir}/{del_name}"):
         filepath = os.path.join(cur_dir, del_name, "info.txt")
+        file_balance = os.path.join(cur_dir, del_name, "balance.txt")
 
         os.remove(filepath)
+        os.remove(file_balance)
         os.rmdir(f"{cur_dir}/{del_name}")
     else:
         print("There is no Account with this name present")
@@ -51,6 +70,7 @@ def delete_account():
 
 
 def interface_window():
+    global cur_dir
 
     base_dir = os.getcwd()
     target_dir = os.path.join(base_dir, "Exercises", "Ex4-Basic_Banking")
@@ -59,6 +79,7 @@ def interface_window():
         os.mkdir(f"{target_dir}/Resources")
 
     os.chdir(f"{target_dir}/Resources")
+    cur_dir = os.getcwd()
 
     para = """
         What Action do you want to perform :
