@@ -1,7 +1,7 @@
 import os
 
 def account_setup():
-    global prm_balance , cur_dir
+    global prm_balance
     
     user_name = input("Enter Account Holder's Name : ")
 
@@ -14,6 +14,11 @@ def account_setup():
         return
     
     prm_balance = int(input("Enter the primary Balance : "))
+
+    filepath = os.path.join(cur_dir, user_name, "info.txt")
+
+    with open(filepath, "w") as file :
+        file.write(f"Account Holder's Name : {user_name}\n Primary Balance : {prm_balance}\n")
 
 
 
@@ -32,9 +37,14 @@ def view_history():
 
 def delete_account():
     
+    cur_dir = os.getcwd()
+
     del_name = input("Enter the Account's Name which you want to delete : ")
 
     if os.path.exists(f"{cur_dir}/{del_name}"):
+        filepath = os.path.join(cur_dir, del_name, "info.txt")
+        
+        os.remove(filepath)
         os.rmdir(f"{cur_dir}/{del_name}")
     else:
         print("There is no Account with this name present")
