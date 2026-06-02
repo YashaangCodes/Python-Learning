@@ -14,29 +14,29 @@
 # text= input("Enter : ").lower()
 # print(text)
 
-def create():
-    print("Acc will be created")
-    return
+# def create():
+#     print("Acc will be created")
+#     return
 
-def deposit():
-    print("Money will be deposited")
-    return
+# def deposit():
+#     print("Money will be deposited")
+#     return
 
-def withdraw():
-    print("Money is Withdrawn")
-    return
+# def withdraw():
+#     print("Money is Withdrawn")
+#     return
 
 # ac_dic = {1 : create() , 2 : deposit() , 3 : withdraw()}
 # ac_dic[2]
 
-while True :
-    ac_dic = {1 : create , 2 : deposit , 3 : withdraw}
-    action = int(input("Enter the action : "))
+# while True :
+#     ac_dic = {1 : create , 2 : deposit , 3 : withdraw}
+#     action = int(input("Enter the action : "))
 
-    if action in ac_dic.keys():
-        ac_dic[action]()
-    elif action == 4:
-        break
+#     if action in ac_dic.keys():
+#         ac_dic[action]()
+#     elif action == 4:
+#         break
 
 
     # if action not in [1,2,3]:
@@ -45,3 +45,6 @@ while True :
     # for i in range(1,4):
     #     if i == action:
     #         ac_dic[i]()
+
+import os
+print(os.getcwd())

@@ -1,5 +1,21 @@
+import os
+
 def account_setup():
-    print("Acc will be created")
+    global prm_balance , cur_dir
+    
+    user_name = input("Enter Account Holder's Name : ")
+
+    cur_dir = os.getcwd()
+
+    if not os.path.exists(f"{cur_dir}/{user_name}"):
+        os.mkdir(f"{cur_dir}/{user_name}")
+    else :
+        print("Account already exists with this name!")
+        return
+    
+    prm_balance = int(input("Enter the primary Balance : "))
+
+
 
 def deposit():
     print("Money will be deposited")
@@ -8,15 +24,34 @@ def withdraw():
     print("Money is Withdrawn")
 
 def check_balance():
-    print("Balance will be checked")
+    
+    print(f"Your current Balance is : {prm_balance}")
 
 def view_history():
     print("History will be showed")
 
 def delete_account():
-    print("Account will be deleted")
+    
+    del_name = input("Enter the Account's Name which you want to delete : ")
+
+    if os.path.exists(f"{cur_dir}/{del_name}"):
+        os.rmdir(f"{cur_dir}/{del_name}")
+    else:
+        print("There is no Account with this name present")
+        return
+    
+
 
 def interface_window():
+
+    base_dir = os.getcwd()
+    target_dir = os.path.join(base_dir, "Exercises", "Ex4-Basic_Banking")
+    
+    if not os.path.exists(f"{target_dir}/Resources"):
+        os.mkdir(f"{target_dir}/Resources")
+
+    os.chdir(f"{target_dir}/Resources")
+
     para = """
         What Action do you want to perform :
         1] Create Account
