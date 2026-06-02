@@ -1,0 +1,192 @@
+import os
+
+def get_balance(info_path):
+    with open(info_path, "r") as file:
+        line = file.readline()
+    
+    return int(line.split("=")[1])
+    
+
+def save_balance(info_path,base_balance):
+    with open(info_path, "w") as file :
+        file.write(f"Balance={base_balance}")
+
+def account_setup():
+
+    user_name = input("Enter the Account's Name : ")
+    
+    if not user_name:
+        print("Invalid Account Name!")
+        return
+    elif not os.path.exists(f"{cur_dir}/{user_name}"):
+        os.mkdir(f"{cur_dir}/{user_name}")
+    else :
+        print("Account already exists with this name!")
+        return
+    
+    try :
+        prm_balance = int(input("Enter the primary Balance : "))
+    except ValueError:
+        print("Invalid Input!")
+        os.rmdir(f"{cur_dir}/{user_name}")
+        return
+    
+    if prm_balance < 0 :
+        print("Primary Balance cannot be negative!")
+        os.rmdir(f"{cur_dir}/{user_name}")
+        return
+    
+    filepath = os.path.join(cur_dir, user_name, "info.txt")
+    file_balance = os.path.join(cur_dir, user_name, "balance.txt")
+    
+    with open(filepath, "w") as file :
+        file.write(f"Account's Name : {user_name}\nPrimary Balance : {prm_balance}\n\nTransaction History :- \n")
+
+    save_balance(file_balance,prm_balance)
+
+    
+
+def deposit():
+    
+    user_name = input("Enter the Account's Name into which you want to deposit: ")
+
+    if not os.path.exists(f"{cur_dir}/{user_name}"):
+        print(f"Account does not Exist!")
+        return
+    
+    try:
+        dp_money = int(input("Enter the amount you want to Deposit : "))
+    except ValueError:
+        print("Invalid Input!")
+        return
+    
+    if dp_money <= 0 :
+        print("Amount should be positive!")
+        return
+    
+    filepath = os.path.join(cur_dir, user_name, "info.txt")
+    file_balance = os.path.join(cur_dir, user_name, "balance.txt")
+
+    balance = get_balance(file_balance) + dp_money
+
+    save_balance(file_balance, balance)
+
+    with open(filepath, "a") as file:
+        file.write(f"Deposited : +{dp_money}\n")
+
+
+def withdraw():
+    user_name = input("Enter the Account's Name from which you want to withdraw: ")
+    
+    if not os.path.exists(f"{cur_dir}/{user_name}"):
+        print(f"Account does not Exist!")
+        return
+    try:
+        wd_money = int(input("Enter the amount you want to Withdraw : "))
+    except ValueError:
+        print("Invalid Input!")
+        return
+
+    filepath = os.path.join(cur_dir, user_name, "info.txt")
+    file_balance = os.path.join(cur_dir, user_name, "balance.txt")
+    
+    balance = get_balance(file_balance)
+    if wd_money <= 0 :
+        print("Amount should be positive")
+        return
+    elif wd_money > balance :
+        print("Insufficient Balance!")
+        return
+
+
+    balance = balance - wd_money
+
+    save_balance(file_balance, balance)
+
+    with open(filepath, "a") as file:
+        file.write(f"Withdrawn : -{wd_money}\n")
+
+def check_balance():
+    
+    user_name = input("Enter the Account's Name whose balance you want to check: ")
+
+    if not os.path.exists(f"{cur_dir}/{user_name}"):
+        print(f"Account does not Exist!")
+        return
+    
+    file_balance = os.path.join(cur_dir, user_name, "balance.txt")
+    balance = get_balance(file_balance)
+    
+    print(f"Your Current Balance is : {balance}")
+
+
+def view_history():
+
+    user_name = input("Enter the Account's Name whose transaction history you want to check: ")
+    
+    if not os.path.exists(f"{cur_dir}/{user_name}"):
+        print(f"Account does not Exist!")
+        return
+    
+    filepath = os.path.join(cur_dir, user_name, "info.txt")
+
+    with open(filepath,"r") as file:
+        info = file.read()
+    print(f"\n{info}")
+
+def delete_account():
+    
+    del_name = input("Enter the Account's Name which you want to delete : ")
+
+    if os.path.exists(f"{cur_dir}/{del_name}"):
+        filepath = os.path.join(cur_dir, del_name, "info.txt")
+        file_balance = os.path.join(cur_dir, del_name, "balance.txt")
+
+        os.remove(filepath)
+        os.remove(file_balance)
+        os.rmdir(f"{cur_dir}/{del_name}")
+    else:
+        print("There is no Account with this name present")
+        return
+    
+
+
+def interface_window():
+    global cur_dir
+
+    base_dir = os.getcwd()
+    target_dir = os.path.join(base_dir, "Exercises", "Ex4-Basic_Banking")
+    
+    if not os.path.exists(f"{target_dir}/Resources"):
+        os.mkdir(f"{target_dir}/Resources")
+
+    os.chdir(f"{target_dir}/Resources")
+    cur_dir = os.getcwd()
+
+    para = """
+        What Action do you want to perform :
+        1] Create Account
+        2] Deposit
+        3] Withdraw
+        4] Check Current Balance
+        5] View Transaction History
+        6] Delete Account
+        7] Quit
+        """
+    ac_dict = { "1" : account_setup , "2" : deposit , "3" : withdraw , "4" : check_balance , "5" : view_history , "6" : delete_account}
+
+    while True:
+        
+        print(para)
+        
+        action = input("Enter the Number corresponding to the action (Eg - For Deposit enter 2)) : ")
+        
+        if action in ac_dict:
+            ac_dict[action]()
+        elif action == "7":
+            print("Thank You for Trusting Us... Have a Good Day")
+            break
+        else :
+            print("Invalid Action")
+
+interface_window()
