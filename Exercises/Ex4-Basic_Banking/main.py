@@ -1,8 +1,7 @@
 import os
 
 def account_setup():
-    global prm_balance
-    
+
     user_name = input("Enter Account Holder's Name : ")
 
     cur_dir = os.getcwd()
@@ -29,9 +28,8 @@ def withdraw():
     print("Money is Withdrawn")
 
 def check_balance():
+    print("Balance")
     
-    print(f"Your current Balance is : {prm_balance}")
-
 def view_history():
     print("History will be showed")
 
@@ -43,7 +41,7 @@ def delete_account():
 
     if os.path.exists(f"{cur_dir}/{del_name}"):
         filepath = os.path.join(cur_dir, del_name, "info.txt")
-        
+
         os.remove(filepath)
         os.rmdir(f"{cur_dir}/{del_name}")
     else:
