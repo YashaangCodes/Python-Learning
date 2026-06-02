@@ -35,7 +35,20 @@ def account_setup():
     
 
 def deposit():
-    print("Money will be deposited")
+    
+    user_name = input("Enter Account Holder's Name : ")
+    dp_money = int(input("Enter the amount you want to Deposit : "))
+
+    filepath = os.path.join(cur_dir, user_name, "info.txt")
+    file_balance = os.path.join(cur_dir, user_name, "balance.txt")
+
+    balance = get_balance(file_balance) + dp_money
+
+    save_balance(file_balance, balance)
+
+    with open(filepath, "a") as file:
+        file.write(f"Deposited : +{dp_money}")
+
 
 def withdraw():
     print("Money is Withdrawn")
