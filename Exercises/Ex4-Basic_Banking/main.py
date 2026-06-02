@@ -14,8 +14,11 @@ def save_balance(info_path,base_balance):
 def account_setup():
 
     user_name = input("Enter the Account's Name : ")
-
-    if not os.path.exists(f"{cur_dir}/{user_name}"):
+    
+    if not user_name:
+        print("Invalid Account Name!")
+        return
+    elif not os.path.exists(f"{cur_dir}/{user_name}"):
         os.mkdir(f"{cur_dir}/{user_name}")
     else :
         print("Account already exists with this name!")
@@ -27,7 +30,12 @@ def account_setup():
         print("Invalid Input!")
         os.rmdir(f"{cur_dir}/{user_name}")
         return
-
+    
+    if prm_balance < 0 :
+        print("Primary Balance cannot be negative!")
+        os.rmdir(f"{cur_dir}/{user_name}")
+        return
+    
     filepath = os.path.join(cur_dir, user_name, "info.txt")
     file_balance = os.path.join(cur_dir, user_name, "balance.txt")
     
@@ -51,7 +59,11 @@ def deposit():
     except ValueError:
         print("Invalid Input!")
         return
-
+    
+    if dp_money <= 0 :
+        print("Amount should be positive!")
+        return
+    
     filepath = os.path.join(cur_dir, user_name, "info.txt")
     file_balance = os.path.join(cur_dir, user_name, "balance.txt")
 
@@ -74,12 +86,20 @@ def withdraw():
     except ValueError:
         print("Invalid Input!")
         return
-    
 
     filepath = os.path.join(cur_dir, user_name, "info.txt")
     file_balance = os.path.join(cur_dir, user_name, "balance.txt")
+    
+    balance = get_balance(file_balance)
+    if wd_money <= 0 :
+        print("Amount should be positive")
+        return
+    elif wd_money > balance :
+        print("Insufficient Balance!")
+        return
 
-    balance = get_balance(file_balance) - wd_money
+
+    balance = balance - wd_money
 
     save_balance(file_balance, balance)
 

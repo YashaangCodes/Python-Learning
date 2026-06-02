@@ -8,3 +8,7 @@ Deposited : +700
 Withdrawn : -360
 Withdrawn : -300
 Withdrawn : -80
+Deposited : +2000
+Withdrawn : -3600
+Deposited : +5000
+Withdrawn : -3000

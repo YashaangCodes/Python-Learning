@@ -1,0 +1,7 @@
+Account's Name : Family
+Primary Balance : 50000
+
+Transaction History :- 
+Withdrawn : -2000
+Withdrawn : -20000
+Deposited : +21600
