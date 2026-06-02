@@ -11,10 +11,9 @@ def save_balance(info_path,base_balance):
     with open(info_path, "w") as file :
         file.write(f"Balance={base_balance}")
 
-
 def account_setup():
 
-    user_name = input("Enter Account Holder's Name : ")
+    user_name = input("Enter the Account's Name : ")
 
     if not os.path.exists(f"{cur_dir}/{user_name}"):
         os.mkdir(f"{cur_dir}/{user_name}")
@@ -22,13 +21,18 @@ def account_setup():
         print("Account already exists with this name!")
         return
     
-    prm_balance = int(input("Enter the primary Balance : "))
+    try :
+        prm_balance = int(input("Enter the primary Balance : "))
+    except ValueError:
+        print("Invalid Input!")
+        os.rmdir(f"{cur_dir}/{user_name}")
+        return
 
     filepath = os.path.join(cur_dir, user_name, "info.txt")
     file_balance = os.path.join(cur_dir, user_name, "balance.txt")
     
     with open(filepath, "w") as file :
-        file.write(f"Account Holder's Name : {user_name}\nPrimary Balance : {prm_balance}\n\nTransaction History :- \n")
+        file.write(f"Account's Name : {user_name}\nPrimary Balance : {prm_balance}\n\nTransaction History :- \n")
 
     save_balance(file_balance,prm_balance)
 
@@ -36,8 +40,17 @@ def account_setup():
 
 def deposit():
     
-    user_name = input("Enter Account Holder's Name into which you want to deposit: ")
-    dp_money = int(input("Enter the amount you want to Deposit : "))
+    user_name = input("Enter the Account's Name into which you want to deposit: ")
+
+    if not os.path.exists(f"{cur_dir}/{user_name}"):
+        print(f"Account does not Exist!")
+        return
+    
+    try:
+        dp_money = int(input("Enter the amount you want to Deposit : "))
+    except ValueError:
+        print("Invalid Input!")
+        return
 
     filepath = os.path.join(cur_dir, user_name, "info.txt")
     file_balance = os.path.join(cur_dir, user_name, "balance.txt")
@@ -51,8 +64,17 @@ def deposit():
 
 
 def withdraw():
-    user_name = input("Enter Account Holder's Name from which you want to withdraw: ")
-    wd_money = int(input("Enter the amount you want to Withdraw : "))
+    user_name = input("Enter the Account's Name from which you want to withdraw: ")
+    
+    if not os.path.exists(f"{cur_dir}/{user_name}"):
+        print(f"Account does not Exist!")
+        return
+    try:
+        wd_money = int(input("Enter the amount you want to Withdraw : "))
+    except ValueError:
+        print("Invalid Input!")
+        return
+    
 
     filepath = os.path.join(cur_dir, user_name, "info.txt")
     file_balance = os.path.join(cur_dir, user_name, "balance.txt")
@@ -66,7 +88,12 @@ def withdraw():
 
 def check_balance():
     
-    user_name = input("Enter Account Holder's Name whose balance you want to check: ")
+    user_name = input("Enter the Account's Name whose balance you want to check: ")
+
+    if not os.path.exists(f"{cur_dir}/{user_name}"):
+        print(f"Account does not Exist!")
+        return
+    
     file_balance = os.path.join(cur_dir, user_name, "balance.txt")
     balance = get_balance(file_balance)
     
@@ -75,7 +102,11 @@ def check_balance():
 
 def view_history():
 
-    user_name = input("Enter Account Holder's Name whose transaction history you want to check: ")
+    user_name = input("Enter the Account's Name whose transaction history you want to check: ")
+    
+    if not os.path.exists(f"{cur_dir}/{user_name}"):
+        print(f"Account does not Exist!")
+        return
     
     filepath = os.path.join(cur_dir, user_name, "info.txt")
 

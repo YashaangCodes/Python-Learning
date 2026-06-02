@@ -1,0 +1,10 @@
+Account's Name : Yashaang Adhikari
+Primary Balance : 5000
+
+Transaction History :- 
+Deposited : +350
+Withdrawn : -180
+Deposited : +700
+Withdrawn : -360
+Withdrawn : -300
+Withdrawn : -80
