@@ -74,7 +74,14 @@ def check_balance():
 
 
 def view_history():
-    print("History will be showed")
+
+    user_name = input("Enter Account Holder's Name whose transaction history you want to check: ")
+    
+    filepath = os.path.join(cur_dir, user_name, "info.txt")
+
+    with open(filepath,"r") as file:
+        info = file.read()
+    print(f"\n{info}")
 
 def delete_account():
     
