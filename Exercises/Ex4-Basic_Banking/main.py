@@ -1,19 +1,22 @@
-def Account_Setup():
+def account_setup():
     print("Acc will be created")
 
-def Deposit():
+def deposit():
     print("Money will be deposited")
 
-def Withdraw():
+def withdraw():
     print("Money is Withdrawn")
 
-def Check_Balance():
+def check_balance():
     print("Balance will be checked")
 
-def View_History():
+def view_history():
     print("History will be showed")
 
-def Interface_Window():
+def delete_account():
+    print("Account will be deleted")
+
+def interface_window():
     para = """
         What Action do you want to perform :
         1] Create Account
@@ -21,9 +24,10 @@ def Interface_Window():
         3] Withdraw
         4] Check Current Balance
         5] View Transaction History
-        6] Quit
+        6] Delete Account
+        7] Quit
         """
-    ac_dict = { "1" : Account_Setup , "2" : Deposit , "3" : Withdraw , "4" : Check_Balance , "5" : View_History }
+    ac_dict = { "1" : account_setup , "2" : deposit , "3" : withdraw , "4" : check_balance , "5" : view_history , "6" : delete_account}
 
     while True:
         
@@ -33,10 +37,10 @@ def Interface_Window():
         
         if action in ac_dict:
             ac_dict[action]()
-        elif action == "6":
+        elif action == "7":
             print("Thank You for Trusting Us... Have a Good Day")
             break
         else :
             print("Invalid Action")
 
-Interface_Window()
+interface_window()
