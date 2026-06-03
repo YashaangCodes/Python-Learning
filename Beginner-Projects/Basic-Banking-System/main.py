@@ -155,12 +155,11 @@ def interface_window():
     global cur_dir
 
     base_dir = os.getcwd()
-    target_dir = os.path.join(base_dir, "Beginner-Projects", "Basic-Banking-System")
     
-    if not os.path.exists(f"{target_dir}/Resources"):
-        os.mkdir(f"{target_dir}/Resources")
+    if not os.path.exists(f"{base_dir}/Resources"):
+        os.mkdir(f"{base_dir}/Resources")
 
-    os.chdir(f"{target_dir}/Resources")
+    os.chdir(f"{base_dir}/Resources")
     cur_dir = os.getcwd()
 
     para = """
