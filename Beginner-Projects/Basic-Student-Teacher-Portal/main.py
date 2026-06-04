@@ -28,5 +28,8 @@ def setup_window():
         os.mkdir(student_path)
 
 
-setup_window()
+if __name__=="__main__":
+    setup_window()
+
+
 
