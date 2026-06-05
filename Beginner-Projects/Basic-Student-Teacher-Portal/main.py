@@ -10,6 +10,80 @@ def file_path(base_dir, *arg):
 def teacher_interface(teacher_name):
     print(f"The Teacher {teacher_name} can use Features and they will be done here")
 
+def student_interface():
+    print("Student Interface")
+
+
+
+def student_log():
+    pass
+
+def teacher_log():
+        
+    while True:
+        print("Enter Account's name (Your name)\nType exit to go back\n")
+        teach_name = input("Enter : ")
+
+        if not teach_name:
+            print("Invalid Input")
+        elif teach_name.lower() == "exit":
+            log_in()
+            return
+        else:
+            teach_path = file_path("Resources","Teacher",teach_name)
+
+            if not os.path.isdir(teach_path):
+                print("No Account with such name exists!")
+                continue
+            else:
+                break
+    
+    pass_info_path = file_path("Resources","Teacher",teach_name,"info.txt")
+
+    with open(pass_info_path,'r') as file:
+        text_lines = file.readlines()
+    
+    while True:
+        print("Enter exit to go to the Log In window")
+        pass_check = input("Enter the Password : ")
+
+        if text_lines[3] == f"{pass_check}\n":
+            break
+        elif pass_check.lower() == "exit":
+            log_in()
+            return
+        else:
+            print("Invalid Password!\n")
+
+    print(f"You are no Logged In as {teach_name}\n")
+    
+    teacher_interface(teach_name)
+
+
+def log_in():
+    text = """
+Log in to an Account as a Teacher or a Student?
+Enter [1] for Teacher
+Enter [2] for Student
+Enter [3] to Exit to the main Window\n 
+"""
+    choice_dict = {"1" : teacher_log, "2" : student_log, "3" : setup_window}
+
+    while True :
+        print(text)
+        choice = input("Enter : ")
+
+        if choice in choice_dict:
+            choice_dict[choice]()
+            break
+        else:
+            print("Invalid Input!\n")
+
+
+
+
+def student_create():
+    print("Student Create acc")
 
 def teacher_create():
         
@@ -70,13 +144,6 @@ def teacher_create():
 
     teacher_interface(teach_name)
 
-def student_create():
-    print("Student Create acc")
-
-
-def log_in():
-    print("You will be logged in")
-
 def create_acc():
     text = """
 Create an Account as a Teacher or a Student?
@@ -98,6 +165,27 @@ Enter [3] to Exit to the main Window\n
 
 
 
+def setup_window():
+
+    text = """
+[1] Log in to an Existing Account
+[2] Create a New Account
+[3] Quit"""
+    print(text)
+
+    ac_dic = {"1" : log_in , "2" : create_acc}
+
+    while True:
+        action = input("Enter the corresponding Number : ")
+
+        if action in ac_dic:
+            ac_dic[action]()
+            break
+        elif action == "3":
+            print("You have quited")
+            break
+        else:
+            print("Invalid Input\n")
 
 def main():
 
@@ -133,31 +221,6 @@ def main():
     setup_window()
 
 
-def setup_window():
-
-    text = """
-[1] Log in to an Existing Account
-[2] Create a New Account
-[3] Quit"""
-    print(text)
-
-    ac_dic = {"1" : log_in , "2" : create_acc}
-
-    while True:
-        action = input("Enter the corresponding Number : ")
-
-        if action in ac_dic:
-            ac_dic[action]()
-            break
-        elif action == "3":
-            print("You have quited")
-            break
-        else:
-            print("Invalid Input\n")
-
 
 if __name__=="__main__":
     main()
-
-
-
