@@ -57,31 +57,6 @@ def user_log(role , role_interface):
     role_interface(user_name)
 
 
-# def log_in():
-#     text = """
-# Log in to an Account as a Teacher or a Student?
-# Enter [1] for Teacher
-# Enter [2] for Student
-# Enter [3] to Exit to the main Window\n 
-# """
-
-#     while True :
-#         print(text)
-#         choice = input("Enter : ")
-
-#         if choice == "1":
-#             user_log("Teacher", teacher_interface)
-#             break
-#         elif choice == "2":
-#             user_log("Student", student_interface)
-#             break
-#         elif choice == "3":
-#             setup_window()
-#             break
-#         else:
-#             print("Invalid Input!\n")
-
-
 
 def user_create(role , role_interface):
         
