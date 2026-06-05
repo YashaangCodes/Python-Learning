@@ -1,7 +1,5 @@
 Student Name : 
 Yash
-Password : 
-yashstud
 Assigned Teachers : 
 None
 Grades :

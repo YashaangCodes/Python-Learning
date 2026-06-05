@@ -15,39 +15,36 @@ def teacher_interface(teacher_name):
     print(f"The Teacher {teacher_name} can use Features and they will be done here")
 
 
-def student_log():
-    pass
-
-def teacher_log():
+def user_log(role , role_interface):
         
     while True:
         print("Enter Account's name (Your name)\nType exit to go back\n")
-        teach_name = input("Enter : ")
+        user_name = input("Enter : ")
 
-        if not teach_name:
+        if not user_name:
             print("Invalid Input")
-        elif teach_name.lower() == "exit":
+        elif user_name.lower() == "exit":
             log_in()
             return
         else:
-            teach_path = file_path("Resources","Teacher",teach_name)
+            user_path = file_path("Resources", role ,user_name)
 
-            if not os.path.isdir(teach_path):
+            if not os.path.isdir(user_path):
                 print("No Account with such name exists!")
                 continue
             else:
                 break
     
-    pass_info_path = file_path("Resources","Teacher",teach_name,"info.txt")
+    pass_info_path = file_path("Resources", role ,user_name,"password.txt")
 
     with open(pass_info_path,'r') as file:
-        text_lines = file.readlines()
+        read_pass = file.read()
     
     while True:
         print("Enter exit to go to the Log In window")
         pass_check = input("Enter the Password : ")
 
-        if text_lines[3] == f"{pass_check}\n":
+        if read_pass == pass_check:
             break
         elif pass_check.lower() == "exit":
             log_in()
@@ -55,9 +52,9 @@ def teacher_log():
         else:
             print("Invalid Password!\n")
 
-    print(f"You are no Logged In as {teach_name}\n")
+    print(f"You are no Logged In as {user_name}\n")
     
-    teacher_interface(teach_name)
+    role_interface(user_name)
 
 
 def log_in():
@@ -67,127 +64,81 @@ Enter [1] for Teacher
 Enter [2] for Student
 Enter [3] to Exit to the main Window\n 
 """
-    choice_dict = {"1" : teacher_log, "2" : student_log, "3" : setup_window}
 
     while True :
         print(text)
         choice = input("Enter : ")
 
-        if choice in choice_dict:
-            choice_dict[choice]()
+        if choice == "1":
+            user_log("Teacher", teacher_interface)
+            break
+        elif choice == "2":
+            user_log("Student", student_interface)
+            break
+        elif choice == "3":
+            setup_window()
             break
         else:
             print("Invalid Input!\n")
 
 
 
-
-def student_create():
-    
+def user_create(role , role_interface):
+        
     while True:
-        print("Create an Account for Student\nType exit to go back\n")
-        stud_name = input("Enter Your Name : ")
+        print(f"Create an Account for {role}\nType exit to go back\n")
+        user_name = input("Enter Your Name : ")
         
         
-        if not stud_name:
+        if not user_name:
             print("Invalid Input")
-        elif stud_name.lower() == "exit":
+        elif user_name.lower() == "exit":
             create_acc()
             return
         else:
-            stud_path = file_path("Resources","Student",stud_name)
+            user_path = file_path("Resources", role ,user_name)
 
-            if not os.path.isdir(stud_path):
-                os.mkdir(stud_path)
-                add_name_path = file_path("Resources","Student","Student_List.txt")
+            if not os.path.isdir(user_path):
+                os.mkdir(user_path)
+                add_name_path = file_path("Resources", role ,f"{role}_List.txt")
 
                 with open(add_name_path,'a') as file:
-                    file.write(f"[ ] {stud_name}\n")
+                    file.write(f"[ ] {user_name}\n")
                 break
             else:
                 print("Account alredy Exists!")
     
+
     while True:
-        stud_pass = input("Enter a password for this Account : ")
+        user_pass = input("Enter a password for this Account : ")
         
-        if not stud_pass :
+        if not user_pass :
             print("Invalid Password")
-        elif len(stud_pass) < 5 :
-            print("Password too short!")
-        else:
-            break
-    
-    text_lines = ["Student Name : \n",f"{stud_name}\n","Password : \n",f"{stud_pass}\n","Assigned Teachers : \n", "None\n", "Grades :\n"]
-    
-    info_path = file_path(stud_path,"info.txt")
-
-    with open(info_path,'w') as file:
-        file.writelines(text_lines)
-    
-    print(f"You are now Logged in as {stud_name}")
-
-    student_interface(stud_name)
-
-
-
-def teacher_create():
-        
-    while True:
-        print("Create an Account for Teacher\nType exit to go back\n")
-        teach_name = input("Enter Your Name : ")
-        
-        
-        if not teach_name:
-            print("Invalid Input")
-        elif teach_name.lower() == "exit":
-            create_acc()
-            return
-        else:
-            teach_path = file_path("Resources","Teacher",teach_name)
-
-            if not os.path.isdir(teach_path):
-                os.mkdir(teach_path)
-                add_name_path = file_path("Resources","Teacher","Teacher_List.txt")
-
-                with open(add_name_path,'a') as file:
-                    file.write(f"[ ] {teach_name}\n")
-                break
-            else:
-                print("Account alredy Exists!")
-    
-    teach_sub = input("Enter the Subject You Teach : ")
-
-    while True:
-        teach_pass = input("Enter a password for this Account : ")
-        
-        if not teach_pass :
-            print("Invalid Password")
-        elif len(teach_pass) < 5 :
+        elif len(user_pass) < 5 :
             print("Password too short!")
         else:
             break
             
-    text_lines = ["Teacher Name : \n",f"{teach_name}\n","Password : \n",f"{teach_pass}\n","Subject : \n",f"{teach_sub}\n","Assigned Students : \n"]
-    
-    info_path = file_path(teach_path,"info.txt")
+    if role == "Teacher":
+        teach_sub = input("Enter the Subject You Teach : ")
+        text_lines = ["Teacher Name : \n",f"{user_name}\n", "Subject : \n",f"{teach_sub}\n","Assigned Students : \n"]
+
+    else:
+        text_lines = ["Student Name : \n",f"{user_name}\n","Assigned Teachers : \n", "None\n", "Grades :\n"]
+
+    info_path = file_path(user_path,"info.txt")
+    password_path = file_path(user_path,"password.txt")
 
     with open(info_path,'w') as file:
         file.writelines(text_lines)
     
-    # with open(info_path,'r') as file:  # Experiment
-    #     text_read = file.readlines()
-    #     print(text_read)
+    with open(password_path,'w') as file:
+        file.write(user_pass)
 
-    # if text_read[1] == teach_name:    # Experiment
-    #     print("Will Work!")
-    # elif text_read[1] == f"{teach_name}\n":
-    #     print("Adding a new line will make it work!")
-    # else:
-    #     print("Won't work!")
 
-    print(f"You are now Logged in as {teach_name}")
+    print(f"You are now Logged in as {user_name}")
 
-    teacher_interface(teach_name)
+    role_interface(user_name)
 
 def create_acc():
     text = """
@@ -196,14 +147,18 @@ Enter [1] for Teacher
 Enter [2] for Student
 Enter [3] to Exit to the main Window\n 
 """
-    ac_dic = {"1" : teacher_create , "2" : student_create , "3" : setup_window}
+    ac_dic = {"1" : ["Teacher",teacher_interface] , "2" : ["Student",student_interface]}
 
     while True:
         print(text)
         action = input("Enter : ")
         
         if action in ac_dic:
-            ac_dic[action]()
+            role_list = ac_dic[action]
+            user_create(role_list[0],role_list[1])
+            break
+        elif action == "3":
+            setup_window()
             break
         else:
             print("Invalid Input\n")
