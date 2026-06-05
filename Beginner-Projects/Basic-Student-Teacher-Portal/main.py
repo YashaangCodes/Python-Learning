@@ -38,7 +38,17 @@ def teacher_create():
     
     teach_sub = input("Enter the Subject You Teach : ")
 
-    text_lines = ["Teacher Name : \n",f"{teach_name}\n","Subject : \n",f"{teach_sub}\n","Assigned Students : \n"]
+    while True:
+        teach_pass = input("Enter a password for this Account : ")
+        
+        if not teach_pass :
+            print("Invalid Password")
+        elif len(teach_pass) < 5 :
+            print("Password too short!")
+        else:
+            break
+            
+    text_lines = ["Teacher Name : \n",f"{teach_name}\n","Password : \n",f"{teach_pass}\n","Subject : \n",f"{teach_sub}\n","Assigned Students : \n"]
     
     info_path = file_path(teach_path,"info.txt")
 
