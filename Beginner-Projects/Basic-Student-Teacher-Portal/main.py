@@ -7,12 +7,12 @@ def file_path(base_dir, *arg):
 
     return target_dir
 
+
+def student_interface(student_name):
+    print(f"Student {student_name} Interface")
+
 def teacher_interface(teacher_name):
     print(f"The Teacher {teacher_name} can use Features and they will be done here")
-
-def student_interface():
-    print("Student Interface")
-
 
 
 def student_log():
@@ -83,13 +83,58 @@ Enter [3] to Exit to the main Window\n
 
 
 def student_create():
-    print("Student Create acc")
+    
+    while True:
+        print("Create an Account for Student\nType exit to go back\n")
+        stud_name = input("Enter Your Name : ")
+        
+        
+        if not stud_name:
+            print("Invalid Input")
+        elif stud_name.lower() == "exit":
+            create_acc()
+            return
+        else:
+            stud_path = file_path("Resources","Student",stud_name)
+
+            if not os.path.isdir(stud_path):
+                os.mkdir(stud_path)
+                add_name_path = file_path("Resources","Student","Student_List.txt")
+
+                with open(add_name_path,'a') as file:
+                    file.write(f"[ ] {stud_name}\n")
+                break
+            else:
+                print("Account alredy Exists!")
+    
+    while True:
+        stud_pass = input("Enter a password for this Account : ")
+        
+        if not stud_pass :
+            print("Invalid Password")
+        elif len(stud_pass) < 5 :
+            print("Password too short!")
+        else:
+            break
+    
+    text_lines = ["Student Name : \n",f"{stud_name}\n","Password : \n",f"{stud_pass}\n","Assigned Teachers : \n", "None\n", "Grades :\n"]
+    
+    info_path = file_path(stud_path,"info.txt")
+
+    with open(info_path,'w') as file:
+        file.writelines(text_lines)
+    
+    print(f"You are now Logged in as {stud_name}")
+
+    student_interface(stud_name)
+
+
 
 def teacher_create():
         
     while True:
         print("Create an Account for Teacher\nType exit to go back\n")
-        teach_name = input("Enter Your Name : ").strip()
+        teach_name = input("Enter Your Name : ")
         
         
         if not teach_name:
