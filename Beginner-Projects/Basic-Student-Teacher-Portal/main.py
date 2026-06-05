@@ -7,14 +7,39 @@ def file_path(base_dir, *arg):
 
     return target_dir
 
+def teacher_create():
+    print("Teacher Create acc")
+
+def student_create():
+    print("Student Create acc")
+
+
 def sign_in():
     print("You will be signed in")
 
-def create():
-    print("Account will be created")
+def create_acc():
+    text = """
+Create an Account as a Teacher or a Student?
+Enter [1] for Teacher
+Enter [2] for Student
+Enter [3] to Exit to the main Window\n 
+"""
+    ac_dic = {"1" : teacher_create , "2" : student_create , "3" : setup_window}
+
+    while True:
+        print(text)
+        action = input("Enter : ")
+        
+        if action in ac_dic:
+            ac_dic[action]()
+            break
+        else:
+            print("Invalid Input")
 
 
-def setup_window():
+
+
+def main():
 
     check_dir = os.path.join(os.getcwd(), "Beginner-Projects", "Basic-Student-Teacher-Portal")
         
@@ -34,10 +59,10 @@ def setup_window():
     if not os.path.isdir(student_path) :
         os.mkdir(student_path)
 
-    sign_up_window()
+    setup_window()
 
 
-def sign_up_window():
+def setup_window():
 
     text = """
 [1] Log in to an Existing Account
@@ -45,13 +70,14 @@ def sign_up_window():
 [3] Quit"""
     print(text)
 
-    ac_dic = {"1" : sign_in , "2" : create}
+    ac_dic = {"1" : sign_in , "2" : create_acc}
 
     while True:
         action = input("Enter the corresponding Number : ")
 
         if action in ac_dic:
             ac_dic[action]()
+            break
         elif action == "3":
             print("You have quited")
             break
@@ -60,7 +86,7 @@ def sign_up_window():
 
 
 if __name__=="__main__":
-    setup_window()
+    main()
 
 
 
