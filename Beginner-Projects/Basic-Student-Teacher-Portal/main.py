@@ -7,6 +7,10 @@ def file_path(base_dir, *arg):
 
     return target_dir
 
+def teacher_interface(teacher_name):
+    print(f"The Teacher {teacher_name} can use Features and they will be done here")
+
+
 def teacher_create():
         
     while True:
@@ -24,27 +28,37 @@ def teacher_create():
 
             if not os.path.isdir(teach_path):
                 os.mkdir(teach_path)
+                add_name_path = file_path("Resources","Teacher","Teacher_List.txt")
+
+                with open(add_name_path,'a') as file:
+                    file.write(f"[ ] {teach_name}\n")
                 break
             else:
                 print("Account alredy Exists!")
     
     teach_sub = input("Enter the Subject You Teach : ")
 
-    text_lines = ["Name : \n",f"{teach_name}\n","Subject : \n",f"{teach_sub}\n","Assigned Students : \n"]
+    text_lines = ["Teacher Name : \n",f"{teach_name}\n","Subject : \n",f"{teach_sub}\n","Assigned Students : \n"]
     
     info_path = file_path(teach_path,"info.txt")
 
     with open(info_path,'w') as file:
         file.writelines(text_lines)
     
-    with open(info_path,'r') as file:  # Experiment
-        text_read = file.readlines()
-        print(text_read)
+    # with open(info_path,'r') as file:  # Experiment
+    #     text_read = file.readlines()
+    #     print(text_read)
 
-    if text_read[1] == teach_name:    # Experiment
-        print("Will Work!")
-    else:
-        print("Won't work!")
+    # if text_read[1] == teach_name:    # Experiment
+    #     print("Will Work!")
+    # elif text_read[1] == f"{teach_name}\n":
+    #     print("Adding a new line will make it work!")
+    # else:
+    #     print("Won't work!")
+
+    print(f"You are now Logged in as {teach_name}")
+
+    teacher_interface(teach_name)
 
 def student_create():
     print("Student Create acc")
@@ -94,6 +108,17 @@ def main():
         os.mkdir(teacher_path)
     if not os.path.isdir(student_path) :
         os.mkdir(student_path)
+
+    teach_list = file_path("Resources","Teacher","Teacher_List.txt")
+    stud_list = file_path("Resources","Student","Student_List.txt")
+
+    if not os.path.exists(teach_list):
+        with open(teach_list,'w') as file:
+            file.write("Teachers List : \n")
+
+    if not os.path.exists(stud_list):
+        with open(stud_list,'w') as file:
+            file.write("Students List : \n")
 
     setup_window()
 
