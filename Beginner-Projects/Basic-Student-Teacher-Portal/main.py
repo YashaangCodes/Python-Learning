@@ -24,7 +24,7 @@ def user_log(role , role_interface):
         if not user_name:
             print("Invalid Input")
         elif user_name.lower() == "exit":
-            log_in()
+            opperation_acc("Log into",user_log)
             return
         else:
             user_path = file_path("Resources", role ,user_name)
@@ -47,39 +47,39 @@ def user_log(role , role_interface):
         if read_pass == pass_check:
             break
         elif pass_check.lower() == "exit":
-            log_in()
+            opperation_acc("Log into",user_log)
             return
         else:
             print("Invalid Password!\n")
 
-    print(f"You are no Logged In as {user_name}\n")
+    print(f"You are now Logged In as {user_name}\n")
     
     role_interface(user_name)
 
 
-def log_in():
-    text = """
-Log in to an Account as a Teacher or a Student?
-Enter [1] for Teacher
-Enter [2] for Student
-Enter [3] to Exit to the main Window\n 
-"""
+# def log_in():
+#     text = """
+# Log in to an Account as a Teacher or a Student?
+# Enter [1] for Teacher
+# Enter [2] for Student
+# Enter [3] to Exit to the main Window\n 
+# """
 
-    while True :
-        print(text)
-        choice = input("Enter : ")
+#     while True :
+#         print(text)
+#         choice = input("Enter : ")
 
-        if choice == "1":
-            user_log("Teacher", teacher_interface)
-            break
-        elif choice == "2":
-            user_log("Student", student_interface)
-            break
-        elif choice == "3":
-            setup_window()
-            break
-        else:
-            print("Invalid Input!\n")
+#         if choice == "1":
+#             user_log("Teacher", teacher_interface)
+#             break
+#         elif choice == "2":
+#             user_log("Student", student_interface)
+#             break
+#         elif choice == "3":
+#             setup_window()
+#             break
+#         else:
+#             print("Invalid Input!\n")
 
 
 
@@ -93,7 +93,7 @@ def user_create(role , role_interface):
         if not user_name:
             print("Invalid Input")
         elif user_name.lower() == "exit":
-            create_acc()
+            opperation_acc("Create",user_create)
             return
         else:
             user_path = file_path("Resources", role ,user_name)
@@ -140,9 +140,10 @@ def user_create(role , role_interface):
 
     role_interface(user_name)
 
-def create_acc():
+def opperation_acc(operation, user_operation):
+    
+    start = f"{operation} an Account as a Teacher or a Student?\n"
     text = """
-Create an Account as a Teacher or a Student?
 Enter [1] for Teacher
 Enter [2] for Student
 Enter [3] to Exit to the main Window\n 
@@ -150,12 +151,12 @@ Enter [3] to Exit to the main Window\n
     ac_dic = {"1" : ["Teacher",teacher_interface] , "2" : ["Student",student_interface]}
 
     while True:
-        print(text)
+        print(start,text)
         action = input("Enter : ")
         
         if action in ac_dic:
             role_list = ac_dic[action]
-            user_create(role_list[0],role_list[1])
+            user_operation(role_list[0],role_list[1])
             break
         elif action == "3":
             setup_window()
@@ -173,14 +174,14 @@ def setup_window():
 [3] Quit"""
     print(text)
 
-    ac_dic = {"1" : log_in , "2" : create_acc}
-
     while True:
         action = input("Enter the corresponding Number : ")
 
-        if action in ac_dic:
-            ac_dic[action]()
+        if action == "1":
+            opperation_acc("Log into",user_log)
             break
+        elif action == "2":
+            opperation_acc("Create",user_create)
         elif action == "3":
             print("You have quited")
             break
