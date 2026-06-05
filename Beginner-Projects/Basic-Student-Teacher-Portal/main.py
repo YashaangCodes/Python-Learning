@@ -8,14 +8,50 @@ def file_path(base_dir, *arg):
     return target_dir
 
 def teacher_create():
-    print("Teacher Create acc")
+        
+    while True:
+        print("Create an Account for Teacher\nType exit to go back\n")
+        teach_name = input("Enter Your Name : ").strip()
+        
+        
+        if not teach_name:
+            print("Invalid Input")
+        elif teach_name.lower() == "exit":
+            create_acc()
+            return
+        else:
+            teach_path = file_path("Resources","Teacher",teach_name)
+
+            if not os.path.isdir(teach_path):
+                os.mkdir(teach_path)
+                break
+            else:
+                print("Account alredy Exists!")
+    
+    teach_sub = input("Enter the Subject You Teach : ")
+
+    text_lines = ["Name : \n",f"{teach_name}\n","Subject : \n",f"{teach_sub}\n","Assigned Students : \n"]
+    
+    info_path = file_path(teach_path,"info.txt")
+
+    with open(info_path,'w') as file:
+        file.writelines(text_lines)
+    
+    with open(info_path,'r') as file:  # Experiment
+        text_read = file.readlines()
+        print(text_read)
+
+    if text_read[1] == teach_name:    # Experiment
+        print("Will Work!")
+    else:
+        print("Won't work!")
 
 def student_create():
     print("Student Create acc")
 
 
-def sign_in():
-    print("You will be signed in")
+def log_in():
+    print("You will be logged in")
 
 def create_acc():
     text = """
@@ -34,7 +70,7 @@ Enter [3] to Exit to the main Window\n
             ac_dic[action]()
             break
         else:
-            print("Invalid Input")
+            print("Invalid Input\n")
 
 
 
@@ -70,7 +106,7 @@ def setup_window():
 [3] Quit"""
     print(text)
 
-    ac_dic = {"1" : sign_in , "2" : create_acc}
+    ac_dic = {"1" : log_in , "2" : create_acc}
 
     while True:
         action = input("Enter the corresponding Number : ")
@@ -82,7 +118,7 @@ def setup_window():
             print("You have quited")
             break
         else:
-            print("Invalid Input")
+            print("Invalid Input\n")
 
 
 if __name__=="__main__":
