@@ -165,9 +165,8 @@ Enter the number corresponding to the action :
 [2] View Students
 [3] Grade Your Students
 [4] Suspend Students
-[5] Delete Student ID
-[6] Leave Institution
-[7] Log out
+[5] Leave Institution
+[6] Log out
 """
     # ac_dic = {"1" : view_personal}
 
@@ -181,11 +180,11 @@ Enter the number corresponding to the action :
         elif action == "2":
             view_role("Student")
 
-        elif action == "6":
+        elif action == "5":
             leave("Teacher",teacher_name)
             return
 
-        elif action == "7":
+        elif action == "6":
             print("You have logged out")
             setup_window()
             return
