@@ -40,7 +40,52 @@ def view_role(role):
             else :
                 print("Invalid Input!\n Please Enter the names mentioned in the list")
     
-        
+
+def select_teacher(student_name):
+
+    teach_list_path = file_path("Resources","Teacher","Teacher_List.txt")
+    with open(teach_list_path,'r') as file:
+        t_list = file.read()
+    
+    while True:
+        print(f"Enter the name of the Teacher you want to be assigned to\nEnter exit to go back\n{t_list}\n")
+        teach_name = input("Enter : ")
+
+        if teach_name.lower() == "exit":
+            return
+        else :
+            teach_path = file_path("Resources","Teacher" ,teach_name)
+
+            if os.path.isdir(teach_path):
+
+                student_info_path = file_path("Resources","Student",student_name,"info.txt")
+                
+                with open(student_info_path,'r') as file:
+                    text_list = file.readlines()
+
+                if f"{teach_name}\n" in text_list:
+                    print("This Teacher is already assigned to you\nSelect someone else\n")
+                    continue
+                
+                teach_info_path = file_path("Resources","Teacher",teach_name,"info.txt")
+
+                with open(teach_info_path,'a') as file:
+                    file.write(f"{student_name}\n")
+
+                
+                add_index = text_list.index('Assigned Teachers : \n') + 1
+                text_list.insert(add_index,f"{teach_name}\n")
+
+                with open(student_info_path,'w') as file:
+                    file.writelines(text_list)
+                
+                print("Continue Selecting Teachers or exit\n")
+
+            else :
+                print("Invalid Input!\n Please Enter the names mentioned in the list")
+            
+    
+
 
 def student_interface(student_name):
 
@@ -64,6 +109,9 @@ Enter the number corresponding to the action :
 
         elif action == "2":
             view_role("Teacher")
+
+        elif action == "3":
+            select_teacher(student_name)
 
         elif action == "5":
             print("You have logged out")
@@ -202,7 +250,7 @@ def user_create(role , role_interface):
         text_lines = ["Teacher Name : \n",f"{user_name}\n", "Subject : \n",f"{teach_sub}\n","Assigned Students : \n"]
 
     else:
-        text_lines = ["Student Name : \n",f"{user_name}\n","Assigned Teachers : \n", "None\n", "Grades :\n"]
+        text_lines = ["Student Name : \n",f"{user_name}\n","Assigned Teachers : \n", "Grades :\n"]
 
     info_path = file_path(user_path,"info.txt")
     password_path = file_path(user_path,"password.txt")
