@@ -8,11 +8,63 @@ def file_path(base_dir, *arg):
     return target_dir
 
 
+def view_personal(role,user_name):
+    
+    user_info_path = file_path("Resources", role, user_name, "info.txt")
+    with open(user_info_path,'r') as file :
+        info = file.read()
+        print(f"\n{info}\n")
+
 def student_interface(student_name):
-    print(f"Student {student_name} Interface")
+
+    text = """
+Enter the number corresponding to the action : 
+[1] View Personal Info
+[2] View Teachers
+[3] Select Teachers
+[4] Leave Institution
+[5] Log out
+"""
+    # ac_dic = {"1" : view_personal}
+
+
+    while True:
+        print(text)
+        action = input("Enter : ")
+        
+        if action == "1":
+            view_personal("Student",student_name)
+        elif action == "6":
+            print("You have logged out")
+            setup_window()
+            return
+        else:
+            print("Invalid Input\n")
 
 def teacher_interface(teacher_name):
-    print(f"The Teacher {teacher_name} can use Features and they will be done here")
+    text = """
+Enter the number corresponding to the action : 
+[1] View Personal Info
+[2] Grade Your Students
+[3] Suspend Students
+[4] Delete Student ID
+[5] Leave Institution
+[6] Log out
+"""
+    # ac_dic = {"1" : view_personal}
+
+    while True:
+        print(text)
+        action = input("Enter : ")
+        
+        if action == "1":
+            view_personal("Teacher",teacher_name)
+        elif action == "6":
+            print("You have logged out")
+            setup_window()
+            return
+        else:
+            print("Invalid Input\n")
 
 
 def user_log(role , role_interface):
