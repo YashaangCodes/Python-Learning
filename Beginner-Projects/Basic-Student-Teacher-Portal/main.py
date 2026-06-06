@@ -58,6 +58,11 @@ def select_teacher(student_name):
 
             if os.path.isdir(teach_path):
 
+                teach_status_path = file_path("Resources","Teacher",teach_name,"status.txt")
+                if os.path.exists(teach_status_path) :
+                    print(f"{teach_name} is no longer a part of this Institution\n Select someone else\n")
+                    continue
+
                 student_info_path = file_path("Resources","Student",student_name,"info.txt")
                 
                 with open(student_info_path,'r') as file:
@@ -84,7 +89,35 @@ def select_teacher(student_name):
             else :
                 print("Invalid Input!\n Please Enter the names mentioned in the list")
             
+
+def leave(role,user_name):
+
+    role_pass_path = file_path("Resources",role,user_name,"password.txt")
+
+    with open(role_pass_path,'r') as file:
+        password = file.read()
     
+    while True:
+        pass_check = input("Enter your Password to Leave Institution (Enter exit to go back) : ")
+
+        if pass_check == password:
+            break
+        elif pass_check.lower() == "exit" :
+            print("You have been Logged Out.\n Please Log in again\n")
+            return
+        else :
+            print("Invalid Password!")
+
+    role_status_path = file_path("Resources",role,user_name,"status.txt")
+    with open(role_status_path,'w') as file:
+        file.write("Left Institution")
+
+    role_info_path = file_path("Resources",role,user_name,"info.txt")
+    with open(role_info_path,'a') as file:
+        file.write("\n----Left Institution----")
+        
+    setup_window()
+    return
 
 
 def student_interface(student_name):
@@ -112,6 +145,10 @@ Enter the number corresponding to the action :
 
         elif action == "3":
             select_teacher(student_name)
+        
+        elif action == "4":
+            leave("Student",student_name)
+            return
 
         elif action == "5":
             print("You have logged out")
@@ -126,11 +163,11 @@ def teacher_interface(teacher_name):
 Enter the number corresponding to the action : 
 [1] View Personal Info
 [2] View Students
-[2] Grade Your Students
-[3] Suspend Students
-[4] Delete Student ID
-[5] Leave Institution
-[6] Log out
+[3] Grade Your Students
+[4] Suspend Students
+[5] Delete Student ID
+[6] Leave Institution
+[7] Log out
 """
     # ac_dic = {"1" : view_personal}
 
@@ -145,6 +182,10 @@ Enter the number corresponding to the action :
             view_role("Student")
 
         elif action == "6":
+            leave("Teacher",teacher_name)
+            return
+
+        elif action == "7":
             print("You have logged out")
             setup_window()
             return
@@ -172,6 +213,12 @@ def user_log(role , role_interface):
                 continue
             else:
                 break
+    
+    user_status_path = file_path("Resources",role,user_name,"status.txt")
+    if os.path.exists(user_status_path):
+        print("You are no longer a part of this Institution!")
+        setup_window()
+        return
     
     pass_info_path = file_path("Resources", role ,user_name,"password.txt")
 
