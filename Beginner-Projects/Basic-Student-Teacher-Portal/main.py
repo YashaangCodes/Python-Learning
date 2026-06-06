@@ -59,7 +59,20 @@ def user_log(role , role_interface):
 
 
 def user_create(role , role_interface):
-        
+
+    if role == "Teacher":
+        while True:
+            teach_code = input("Enter the Teacher's code (Enter exit to go back): ")
+            if not teach_code :
+                print("Invalid code")
+            elif teach_code.lower() == "exit":
+                opperation_acc("Create",user_create)
+                return
+            elif teach_code == "0000":
+                break
+            else :
+                print("Invalid Code")
+
     while True:
         print(f"Create an Account for {role}\nType exit to go back\n")
         user_name = input("Enter Your Name : ")
@@ -157,6 +170,7 @@ def setup_window():
             break
         elif action == "2":
             opperation_acc("Create",user_create)
+            break
         elif action == "3":
             print("You have quited")
             break
