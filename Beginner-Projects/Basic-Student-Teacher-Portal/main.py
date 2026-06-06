@@ -14,6 +14,33 @@ def view_personal(role,user_name):
     with open(user_info_path,'r') as file :
         info = file.read()
         print(f"\n{info}\n")
+    return
+
+def view_role(role):
+
+    role_list_path = file_path("Resources", role ,f"{role}_List.txt")
+
+    with open(role_list_path,'r') as file:
+        r_list = file.read()
+    
+    while True:
+        print(f"\n{r_list}\nEnter exit to go back\n")
+        user_name = input(f"Enter the name of the {role} to view furthe details : ")
+
+        if user_name.lower() == "exit":
+            return
+        else :
+            user_path = file_path("Resources",role ,user_name)
+
+            if os.path.isdir(user_path) :
+                role_info_path = file_path("Resources",role ,user_name,"info.txt")
+                with open(role_info_path,'r') as file:
+                    info = file.read()
+                    print(f"\n{info}\n")
+            else :
+                print("Invalid Input!\n Please Enter the names mentioned in the list")
+    
+        
 
 def student_interface(student_name):
 
@@ -34,10 +61,15 @@ Enter the number corresponding to the action :
         
         if action == "1":
             view_personal("Student",student_name)
-        elif action == "6":
+
+        elif action == "2":
+            view_role("Teacher")
+
+        elif action == "5":
             print("You have logged out")
             setup_window()
             return
+        
         else:
             print("Invalid Input\n")
 
@@ -45,6 +77,7 @@ def teacher_interface(teacher_name):
     text = """
 Enter the number corresponding to the action : 
 [1] View Personal Info
+[2] View Students
 [2] Grade Your Students
 [3] Suspend Students
 [4] Delete Student ID
@@ -59,10 +92,15 @@ Enter the number corresponding to the action :
         
         if action == "1":
             view_personal("Teacher",teacher_name)
+
+        elif action == "2":
+            view_role("Student")
+
         elif action == "6":
             print("You have logged out")
             setup_window()
             return
+        
         else:
             print("Invalid Input\n")
 
