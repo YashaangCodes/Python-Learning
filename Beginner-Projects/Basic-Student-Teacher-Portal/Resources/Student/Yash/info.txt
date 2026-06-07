@@ -1,8 +1,0 @@
-Student Name : 
-Yash
-Assigned Teachers : 
-Yashaang Adhikari
-Henry Ox
-Grades :
-Python
-O

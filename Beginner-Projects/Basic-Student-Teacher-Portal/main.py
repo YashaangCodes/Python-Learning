@@ -25,7 +25,7 @@ def view_role(role):
     
     while True:
         print(f"\n{r_list}\nEnter exit to go back\n")
-        user_name = input(f"Enter the name of the {role} to view furthe details : ")
+        user_name = input(f"Enter the name of the {role} to view furthe details : ").title()
 
         if user_name.lower() == "exit":
             return
@@ -49,7 +49,7 @@ def select_teacher(student_name):
     
     while True:
         print(f"Enter the name of the Teacher you want to be assigned to\nEnter exit to go back\n{t_list}\n")
-        teach_name = input("Enter : ")
+        teach_name = input("Enter : ").title()
 
         if teach_name.lower() == "exit":
             return
@@ -130,7 +130,7 @@ def grade_students(teach_name):
 
     while True:
         print(f"Enter the name of the Student you want to Grade\nEnter exit to go back\n{text}\n")
-        student_name = input("Enter : ")
+        student_name = input("Enter : ").title()
 
         if student_name.lower() == "exit":
             return
@@ -167,7 +167,7 @@ def grade_students(teach_name):
 
             else:
                 with open(student_info_path,'a') as file:
-                    file.write(f"{subject}{grade}")
+                    file.write(f"{subject}{grade}\n")
             print("Student has been Graded!\n")
             
             
@@ -254,7 +254,7 @@ def user_log(role , role_interface):
         
     while True:
         print("Enter Account's name (Your name)\nType exit to go back\n")
-        user_name = input("Enter : ")
+        user_name = input("Enter : ").title()
 
         if not user_name:
             print("Invalid Input")
@@ -316,7 +316,7 @@ def user_create(role , role_interface):
 
     while True:
         print(f"Create an Account for {role}\nType exit to go back\n")
-        user_name = input("Enter Your Name : ")
+        user_name = input("Enter Your Name : ").title()
         
         
         if not user_name:
