@@ -142,6 +142,12 @@ def grade_students(teach_name):
                 print("Invalid Input!\nEnter the names mentioned\n")
                 continue
             
+            student_status_path = file_path("Resources","Student",student_name,"status.txt")
+
+            if os.path.exists(student_status_path):
+                print("This student has left the institution\nGrading not allowed\n")
+                continue
+
             grd_list = ["O","A","B","C","D","F"]
             while True:
 
@@ -171,7 +177,41 @@ def grade_students(teach_name):
             print("Student has been Graded!\n")
             
             
+def suspend(teach_name):
 
+    teach_info_path = file_path("Resources","Teacher",teach_name,"info.txt")
+
+    with open(teach_info_path,'r') as file:
+        info_list = file.readlines()
+    
+    text = "".join(info_list[4:])
+
+    while True:
+        print(f"Enter the name of the Student you want to Suspend\nEnter exit to go back\n{text}\n")
+        student_name = input("Enter : ").title()
+
+        if student_name.lower() == "exit":
+            return
+        else :
+            student_info_path = file_path("Resources","Student",student_name,"info.txt")
+
+            if not os.path.exists(student_info_path):
+                print("Invalid Input!\nEnter the names mentioned\n")
+                continue
+            
+            student_status_path = file_path("Resources","Student",student_name,"status.txt")
+
+            if os.path.exists(student_status_path):
+                print("This student is no longer a part of the college\nSelect someone else\n")
+                continue
+            
+            with open(student_status_path,'w') as file:
+                file.write("Suspended!")
+            
+            with open(student_info_path,'a') as file:
+                file.write(f"\n----SUSPENDED by {teach_name}----\n")
+            
+            print(f"{student_name} has been suspended!\n")
 
 
 def student_interface(student_name):
@@ -237,9 +277,13 @@ Enter the number corresponding to the action :
         elif action == "3":
             grade_students(teacher_name)
 
+        elif action == "4":
+            suspend(teacher_name)
+        
         elif action == "5":
             leave("Teacher",teacher_name)
             return
+        
 
         elif action == "6":
             print("You have logged out")
