@@ -119,6 +119,60 @@ def leave(role,user_name):
     setup_window()
     return
 
+def grade_students(teach_name):
+    
+    teach_info_path = file_path("Resources","Teacher",teach_name,"info.txt")
+
+    with open(teach_info_path,'r') as file:
+        info_list = file.readlines()
+    
+    text = "".join(info_list[4:])
+
+    while True:
+        print(f"Enter the name of the Student you want to Grade\nEnter exit to go back\n{text}\n")
+        student_name = input("Enter : ")
+
+        if student_name.lower() == "exit":
+            return
+        else :
+
+            student_info_path = file_path("Resources","Student",student_name,"info.txt")
+
+            if not os.path.exists(student_info_path):
+                print("Invalid Input!\nEnter the names mentioned\n")
+                continue
+            
+            grd_list = ["O","A","B","C","D","F"]
+            while True:
+
+                grade = input("Enter Grade [O,A,B,C,D,F]: ").upper()
+                if grade in grd_list:
+                    break
+                elif grade.lower() == "exit":
+                    return
+                else:
+                    print("Invalid Input! ")
+                
+            subject = info_list[3]
+
+            with open(student_info_path,'r') as file:
+                stud_info_list = file.readlines()
+            
+            if subject in stud_info_list:
+                ch_index = stud_info_list.index(subject) + 1
+                stud_info_list[ch_index] = grade
+                
+                with open(student_info_path,'w') as file:
+                    file.writelines(stud_info_list)
+
+            else:
+                with open(student_info_path,'a') as file:
+                    file.write(f"{subject}{grade}")
+            print("Student has been Graded!\n")
+            
+            
+
+
 
 def student_interface(student_name):
 
@@ -179,6 +233,9 @@ Enter the number corresponding to the action :
 
         elif action == "2":
             view_role("Student")
+
+        elif action == "3":
+            grade_students(teacher_name)
 
         elif action == "5":
             leave("Teacher",teacher_name)
