@@ -224,8 +224,6 @@ Enter the number corresponding to the action :
 [4] Leave Institution
 [5] Log out
 """
-    # ac_dic = {"1" : view_personal}
-
 
     while True:
         print(text)
@@ -262,8 +260,6 @@ Enter the number corresponding to the action :
 [5] Leave Institution
 [6] Log out
 """
-    # ac_dic = {"1" : view_personal}
-
     while True:
         print(text)
         action = input("Enter : ")
@@ -499,3 +495,5 @@ def main():
 
 if __name__=="__main__":
     main()
+
+
