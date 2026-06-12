@@ -138,7 +138,7 @@ def grade_students(teach_name):
 
             student_info_path = file_path("Resources","Student",student_name,"info.txt")
 
-            if not os.path.exists(student_info_path):
+            if student_name not in text:
                 print("Invalid Input!\nEnter the names mentioned\n")
                 continue
             
