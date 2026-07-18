@@ -65,3 +65,29 @@ Mark True or False:
     True
  
 '''
+
+'''
+1] Lists :
+They are Ordered 
+They are mutable
+They can have duplicate values
+They are indexed
+
+2] Tuple :
+They are Ordered 
+They are immutable
+They can have duplicate values
+They are indexed
+
+3] Set
+They are not Ordered
+They are mutable 
+They cannot have duplicate values
+They are not indexed
+
+4] Dictionary
+They are Ordered
+They are mutable
+They cannot have duplicate keys (duplicate values for different keys are possible)
+They are not indexed rather data is stored in key-value pairs
+'''
