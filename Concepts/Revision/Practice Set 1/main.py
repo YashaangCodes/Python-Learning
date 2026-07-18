@@ -36,3 +36,32 @@ print("a - b =", a - b)
 print("a * b =", a * b)
 print("a / b =", a / b)
 
+print("\nQ7 :\n")
+
+print("Harry said, \"Python is awesome!\" \nThis is on a new line.\nThis is a tab ->\t<- here")
+
+print("\nQ8 :\n")
+
+num = int(input("Enter a number : "))
+print("Square of",num,"is :",num**2)
+print("Cube of",num,"is :",num**3)
+
+'''
+Q9: Quick Quiz (True/False)
+Mark True or False:
+1. Python code must always end with a semicolon  
+    False
+2. The # symbol is used for comments in Python.
+    True
+3. "123" and The 123 are the same in Python.
+    False
+4. * operator is used for multiplication.
+    True
+5. \n creates a new line.
+    True
+6. Variables in Python can start with numbers.
+    False
+7. int("10") + 5 gives 15 
+    True
+ 
+'''
