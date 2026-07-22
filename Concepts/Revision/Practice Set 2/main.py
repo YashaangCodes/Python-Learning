@@ -86,6 +86,27 @@ print("\n")
 
 print("\nQ3.1 :\n")
 
+for i in range(10):
+    print(i+1)
 
+print("\n")
 
+print("\nQ3.2 :\n")
+
+num = int(input("Enter a Number : "))
+for i in range(1,11):
+    print(f"{num} X {i} = {num*i}")
+
+print("\n")
+
+print("\nQ3.3 :\n")
+
+sum = 0
+for i in range (1,101):
+    sum += i
+print(f"The sum of all the numbers from 1 to 100 is {sum}")
+
+print("\n")
+
+print("\nQ3.4 :\n")
 
