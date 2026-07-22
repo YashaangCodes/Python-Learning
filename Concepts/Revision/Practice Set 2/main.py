@@ -110,3 +110,63 @@ print("\n")
 
 print("\nQ3.4 :\n")
 
+for i in range(4): print("*"*(i+1))
+
+print("\n")
+
+print("\nQ4.1 :\n")
+
+i = 1
+while i<=10:
+    print(i)
+    i += 1
+
+print("\n")
+
+print("\nQ4.2 :\n")
+
+password = "pass123"
+
+while True:
+    inpass = input("Enter the test Password (pass123) : ")
+    if inpass == password:
+        print("Thank You!")
+        break
+    else:
+        print("Invalid Input!")
+
+print("\n")
+
+print("\nQ4.3 :\n")
+
+pass
+
+
+print("\n")
+
+print("\nQ5.1 :\n")
+
+for i in range(1,11):
+    if i == 7:
+        break
+    print(i)
+
+print("\n")
+
+print("\nQ5.2 :\n")
+
+for i in range(1,11):
+    if i == 5:
+        continue
+    print(i)
+
+print("\n")
+
+print("\nQ5.3 :\n")
+
+for i in range(1,6):
+    if i == 3:
+        pass
+    else :
+        print(i)
+
