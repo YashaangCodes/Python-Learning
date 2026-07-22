@@ -55,3 +55,37 @@ print("\n")
 
 print("\nQ2.2 :\n")
 
+print("Simple Calculator".center(25,"-"))
+num1 = int(input("Enter Number 1 : "))
+num2 = int(input("Enter Number 2 : "))
+
+print('''
+Enter the Number corresponding to the Operation You want to perform : 
+[1] Addition
+[2] Subtraction
+[3] Multiplication
+[4] Division
+'''
+)
+
+opp = int(input("Enter : "))
+
+match opp:
+    case 1:
+        print(f"{num1} + {num2} = {num1+num2}")
+    case 2:
+        print(f"{num1} - {num2} = {num1-num2}")
+    case 3:
+        print(f"{num1} X {num2} = {num1*num2}")
+    case 4:
+        print(f"{num1} / {num2} = {num1/num2}")
+    case _:
+        print("Invalid Input!")
+
+print("\n")
+
+print("\nQ3.1 :\n")
+
+
+
+
