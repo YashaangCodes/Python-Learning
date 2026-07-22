@@ -17,3 +17,41 @@ if age >=18:
     print("You are Eligible to vote!")
 else:
     print("You are not eligible to vote yet!")
+
+print("\n")
+
+print("\nQ1.3 :\n")
+
+num = int(input("Enter a number : "))
+if num%2==0:
+    print(f"{num} is an Even Number!")
+else:
+    print(f"{num} is an Odd Number!")
+    
+print("\n")
+
+print("\nQ2.1 :\n")
+
+num = int(input("Enter a Day Number (1-7) : "))
+match num :
+    case 1:
+        print(f"Number {num} corresponds to the day Monday!")
+    case 2:
+        print(f"Number {num} corresponds to the day Tuesday!")
+    case 3:
+        print(f"Number {num} corresponds to the day Wednesday!")
+    case 4:
+        print(f"Number {num} corresponds to the day Thursday!")
+    case 5:
+        print(f"Number {num} corresponds to the day Friday!")
+    case 6:
+        print(f"Number {num} corresponds to the day Saturday!")
+    case 7:
+        print(f"Number {num} corresponds to the day Sunday!")
+    case _:
+        print("Invalid Input!")
+
+print("\n")
+
+print("\nQ2.2 :\n")
+
