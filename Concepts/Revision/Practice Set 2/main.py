@@ -60,24 +60,24 @@ num1 = int(input("Enter Number 1 : "))
 num2 = int(input("Enter Number 2 : "))
 
 print('''
-Enter the Number corresponding to the Operation You want to perform : 
-[1] Addition
-[2] Subtraction
-[3] Multiplication
-[4] Division
+Enter the simbol corresponding to the Operation You want to perform : 
+[+] Addition
+[-] Substraction
+[*] Multiplication
+[/] Division
 '''
 )
 
 opp = int(input("Enter : "))
 
 match opp:
-    case 1:
+    case "+":
         print(f"{num1} + {num2} = {num1+num2}")
-    case 2:
+    case "-":
         print(f"{num1} - {num2} = {num1-num2}")
-    case 3:
+    case "*":
         print(f"{num1} X {num2} = {num1*num2}")
-    case 4:
+    case "/":
         print(f"{num1} / {num2} = {num1/num2}")
     case _:
         print("Invalid Input!")
@@ -139,8 +139,8 @@ print("\n")
 
 print("\nQ4.3 :\n")
 
-pass
-
+num = int(input("Enter a Number : "))
+print("Reversed Number is",int(str(num)[::-1]))
 
 print("\n")
 
