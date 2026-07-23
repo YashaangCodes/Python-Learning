@@ -64,7 +64,7 @@ print(sent.upper())
 print("\nQ6.1 :\n")
 
 vowels = ["a","e","i","o","u"]
-text = input("Enter your sentence : ")
+text = input("Enter your sentence : ").lower()
 count = 0
 for alp in vowels:
     count += text.count(alp)
