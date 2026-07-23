@@ -63,5 +63,20 @@ print(sent.upper())
 
 print("\nQ6.1 :\n")
 
+vowels = ["a","e","i","o","u"]
+text = input("Enter your sentence : ")
+count = 0
+for alp in vowels:
+    count += text.count(alp)
+
+print(f"There are {count} vowels in the sentence")
+
+print("\nQ6.2 :\n")
+
+text = input("Enter your string : ")
+if text == text[::-1]:
+    print("Your string is a palindrome!")
+else:
+    print("Your string is not a palindrome!")
 
 
