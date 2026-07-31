@@ -16,3 +16,16 @@ print(square(9))
 
 print("\nQ2.1 :\n")
 
+def full_name(first,last):
+    return first + " " + last
+
+print(full_name("Yashaang","Adhikari"))
+
+print("\nQ2.2 :\n")
+
+def calculate_area(length, width = 10):
+    return length * width
+
+print(calculate_area(10,5))
+print(calculate_area(10))
+
