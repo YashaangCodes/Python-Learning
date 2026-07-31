@@ -39,3 +39,23 @@ print("\nQ3.2 :\n")
 num_list = [1, 2, 3, 4, 5]
 square_list = list(map(lambda x : x**2,num_list))
 print(*square_list)
+
+print("\nQ4.1 :\n")
+
+def factorial(num):
+    if num == 1:
+        return 1
+    return num * factorial(num - 1)
+
+print(factorial(5))
+
+print("\nQ4.2 :\n")
+
+def sum_of_digits(n):
+    if n < 10 :
+        return n
+    return (n%10) + sum_of_digits(n//10)
+
+print(sum_of_digits(1234))
+
+print("\nQ5.1 :\n")
