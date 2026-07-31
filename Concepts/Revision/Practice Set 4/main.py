@@ -97,4 +97,26 @@ def multiply(a,b):
 print(multiply(4,7))
 help(multiply)
 
+print("\nQB.1 :\n")
 
+def fibo(count, num1=0,num2=1):
+    if count == 0 :
+        return ""
+    return f"{num1} " + fibo(count-1,num2,num1+num2)
+
+print(fibo(10))
+
+print("\nQB.2 :\n")
+
+def safe_divide(a,b):
+    if b == 0:
+        return "Cannot divide by Zero!"
+    return a/b
+print(safe_divide(10,2))
+print(safe_divide(10,0))
+
+print("\nQB.3 :\n")
+
+import my_utils as mu
+print(mu.is_even(10))
+print(mu.is_even(11))
