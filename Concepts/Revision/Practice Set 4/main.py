@@ -59,3 +59,42 @@ def sum_of_digits(n):
 print(sum_of_digits(1234))
 
 print("\nQ5.1 :\n")
+
+import math
+print(math.sqrt(144))
+
+print(math.sin(math.radians(90)))
+
+print("\nQ5.2 :\n")
+
+import requests as rq
+data = rq.get("https://api.github.com")
+print(data)
+
+print("\nQ6.1 :\n")
+
+def increment():
+    counter = 0
+    print(counter)
+    counter += 1
+    print(counter)
+increment()
+increment()
+
+print("\nQ6.2 :\n")
+
+def multiply(a,b):
+    '''
+    Returns the multiplied value of a and b
+    
+    Parameters : 
+    a : integer
+    b : integer
+
+    Returns : An Interger value of multiplication of a and b
+    '''
+    return a * b
+print(multiply(4,7))
+help(multiply)
+
+
