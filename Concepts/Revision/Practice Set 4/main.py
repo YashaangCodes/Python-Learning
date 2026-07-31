@@ -29,3 +29,13 @@ def calculate_area(length, width = 10):
 print(calculate_area(10,5))
 print(calculate_area(10))
 
+print("\nQ3.1 :\n")
+
+add = lambda x,y : x + y
+print(add(5,6))
+
+print("\nQ3.2 :\n")
+
+num_list = [1, 2, 3, 4, 5]
+square_list = list(map(lambda x : x**2,num_list))
+print(*square_list)
