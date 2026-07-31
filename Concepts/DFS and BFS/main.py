@@ -1,6 +1,7 @@
 from collections import deque
 
 def BFS(graph,start,visited,n):
+    '''This function implements the BFS algorithm to traverse a graph represented as an adjacency matrix'''
     visited[start] = True
     queue = deque()    
     queue.append(start)
@@ -13,6 +14,7 @@ def BFS(graph,start,visited,n):
                 visited[i] = True
     
 def DFS(graph,vertex,visited,n):
+    '''This function implements the DFS algorithm to traverse a graph represented as an adjacency matrix'''
     visited[vertex] = True
     print(vertex, end = " ")
     for i in range(n):
