@@ -1,5 +1,6 @@
 import time
 import random
+import matplotlib.pyplot as plt
 
 # Linear Search
 
@@ -42,4 +43,14 @@ for size in sizes:
     binary(items,mark)
     binary_time.append(time.time() - start)
 
+plt.plot(sizes, linear_time, marker = 'o', label = 'Linear Search')
+plt.plot(sizes, binary_time, marker = 's', label = 'Binary Search')
+
+plt.xlabel("Input Size")
+plt.ylabel("Execution Time (seconds)")
+plt.title("Linear Search vs Binary Search")
+
+plt.legend()
+plt.grid(True)
+plt.show()
 
