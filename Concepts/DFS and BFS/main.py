@@ -47,6 +47,9 @@ for i in range(n):
     row = list(map(int, input().split()))
     graph.append(row)
 
+# n = 10
+# graph = [[0,1,1,0,0,0,0,0,0,0],[1,0,0,1,1,0,0,0,0,0],[1,0,0,0,0,1,1,0,0,0],[0,1,0,0,0,0,0,1,0,0],[0,1,0,0,0,0,1,0,1,0],[0,0,1,0,0,0,0,0,1,0],[0,0,1,0,0,0,0,0,1,0],[0,0,0,1,0,0,1,0,0,1],[0,0,0,0,1,1,0,0,0,1],[0,0,0,0,0,0,1,1,1,0]]
+
 start = int(input("Enter the starting vertice : "))
 goal = int(input("Enter the goal vertice : "))
 
