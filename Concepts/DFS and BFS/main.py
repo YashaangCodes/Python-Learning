@@ -1,6 +1,6 @@
 from collections import deque
 
-def BFS(graph,start,visited,n):
+def BFS(graph,start,visited,n,reach,target):
     '''This function implements the BFS algorithm to traverse a graph represented as an adjacency matrix'''
     visited[start] = True
     queue = deque()    
@@ -8,18 +8,31 @@ def BFS(graph,start,visited,n):
     while queue:
         vertex = queue.popleft()
         print(vertex, end = " ")
+
+        if vertex == target :
+            reach = True
+            print("\nTarget Found!")
+            return
+
         for i in range(n):
-            if graph[vertex][i] == 1 and not visited[i] :
+            if graph[vertex][i] == 1 and not visited[i] and not reach:
                 queue.append(i)
                 visited[i] = True
+
+                if i == target : reach = True
     
-def DFS(graph,vertex,visited,n):
+def DFS(graph,vertex,visited,n,reach,target):
     '''This function implements the DFS algorithm to traverse a graph represented as an adjacency matrix'''
     visited[vertex] = True
     print(vertex, end = " ")
+
+    if vertex == target:
+        reach = True 
+        print("\nTarget Found!")
+
     for i in range(n):
-        if graph[vertex][i] == 1 and not visited[i] :
-            DFS(graph,i,visited,n)
+        if graph[vertex][i] == 1 and not visited[i] and not reach:
+            DFS(graph,i,visited,n,reach,target)
 
 n = int(input("Enter the number of vertices : "))
 
@@ -31,11 +44,14 @@ for i in range(n):
     graph.append(row)
 
 start = int(input("Enter the starting vertice : "))
+goal = int(input("Enter the goal vertice : "))
 
+status = False
 visited = [False] * n
-print("BFS Traversl : ", end="")
-BFS(graph,start,visited,n)
+print("\nBFS Traversl : ", end="")
+BFS(graph,start,visited,n,status,goal)
 
+status = False
 visited = [False] * n
 print("\nDFS Trversal : ", end="")
-DFS(graph,start,visited,n)
+DFS(graph,start,visited,n,status,goal)
