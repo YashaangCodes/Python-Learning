@@ -69,7 +69,7 @@ print("\nQ5.2 :\n")
 
 import requests as rq
 data = rq.get("https://api.github.com")
-print(data)
+print(data.json())
 
 print("\nQ6.1 :\n")
 
