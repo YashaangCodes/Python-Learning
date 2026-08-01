@@ -20,19 +20,23 @@ def BFS(graph,start,visited,n,reach,target):
                 visited[i] = True
 
                 if i == target : reach = True
+    else :
+        print("\nTarget wasn't found!")
     
-def DFS(graph,vertex,visited,n,reach,target):
+def DFS(graph,vertex,visited,n,target):
     '''This function implements the DFS algorithm to traverse a graph represented as an adjacency matrix'''
     visited[vertex] = True
     print(vertex, end = " ")
 
     if vertex == target:
-        reach = True 
         print("\nTarget Found!")
+        return True
 
     for i in range(n):
-        if graph[vertex][i] == 1 and not visited[i] and not reach:
-            DFS(graph,i,visited,n,reach,target)
+        if graph[vertex][i] == 1 and not visited[i] :
+            if DFS(graph,i,visited,n,target):
+                return True
+    return False
 
 n = int(input("Enter the number of vertices : "))
 
@@ -51,7 +55,7 @@ visited = [False] * n
 print("\nBFS Traversl : ", end="")
 BFS(graph,start,visited,n,status,goal)
 
-status = False
 visited = [False] * n
 print("\nDFS Trversal : ", end="")
-DFS(graph,start,visited,n,status,goal)
+if not DFS(graph,start,visited,n,goal):
+    print("\nTarget wasn't Found!")
