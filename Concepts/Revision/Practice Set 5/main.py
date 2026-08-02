@@ -81,4 +81,37 @@ print(info.values())
 for name,num in info.items():
     print(f"{name} : {num}")
 
-    
+print("\nQB.1 :\n")
+
+# print("Enter 10 values : ")
+# values = [int(input("Enter : ")) for i in range(10)]
+# no_dup_values = set(values)
+# print("After removing duplicates :", *no_dup_values)
+
+print("\nQB.2 :\n")
+
+products = {
+    "Laptop": 65000,
+    "Smartphone": 28000,
+    "Headphones": 3500,
+    "Monitor": 18000,
+    "Keyboard": 2200,
+    "Graphics Card": 52000,
+    "SSD": 7500,
+    "Printer": 12500,
+    "Tablet": 32000,
+    "Smartwatch": 15000
+}
+price = list(products.values())
+high_price = max(price)
+high_index = price.index(high_price)
+prod_names = list(products.keys())
+print(prod_names[high_index])
+
+print("\nQB.3 :\n")
+
+dic1 = {"One" : 1, "Two" : 2}
+dic2 = {"Three" : 3, "Four" : 4}
+
+dic1.update(dic2)
+print(dic1)
