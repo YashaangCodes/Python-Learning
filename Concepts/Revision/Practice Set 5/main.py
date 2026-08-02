@@ -41,3 +41,44 @@ coordinates[0] = 50
 coordinates = tuple(coordinates)
 print(coordinates)
 
+print("\nQ4.1 :\n")
+
+my_set = {1,2,3,3,4}
+print(my_set)
+
+print("\nQ4.2 :\n")
+
+my_set.add(5)
+my_set.discard(2)
+print(my_set)
+if 4 in my_set:
+    print(True)
+else:
+    print(False)
+
+print("\nQ4.3 :\n")
+
+a = {1,2,3}
+b = {3,4,5}
+
+print(a.union(b))
+print(a.intersection(b))
+print(a.difference(b))
+
+print("\nQ5.1 :\n")
+
+student = {"name": "John", "age": 20, "grade": "A"}
+print(student["name"])
+student["grade"] = "A+"
+student["city"] = "Delhi"
+print(student)
+
+print("\nQ5.2 :\n")
+
+info = {"Yashaang" : 8686868686, "John" : 9898989898, "Doe" : 4747474747}
+print(info.keys())
+print(info.values())
+for name,num in info.items():
+    print(f"{name} : {num}")
+
+    
