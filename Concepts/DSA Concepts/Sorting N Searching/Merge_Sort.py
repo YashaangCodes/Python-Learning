@@ -1,13 +1,13 @@
-def merge_sort(arr, reverse = False):
+def merge_sort(arr, reverse = False, merge_count = 0, rec_count = 0, rec_level = 0) :
 
     if len(arr) <= 1:
-        return arr
+        return arr, merge_count, rec_count + 1, rec_level + 1
 
     left_arr = arr[ : len(arr)//2]
     right_arr = arr[len(arr)//2 : ]
     
-    merge_sort(left_arr)
-    merge_sort(right_arr)
+    left_arr , left_merge_count , left_rec_count , rec_level = merge_sort(left_arr)
+    right_arr , right_merge_count , right_rec_count , rec_level = merge_sort(right_arr)
 
     i = 0
     j = 0
@@ -46,11 +46,16 @@ def merge_sort(arr, reverse = False):
             arr[k] = right_arr[j]
         j += 1
         k += 1
-    return arr
 
-items = [57, 23, 89, 12, 45, 67, 1]
+    return arr, left_merge_count + right_merge_count + 1, left_rec_count + right_rec_count + 1, rec_level + 1
+
+print("Enter the list with spaces in between (Eg : 4 5 2 9 1) : ")
+items = list(map(int,input().split()))
+
+# items = [57, 23, 89, 12, 45, 67, 1]
+
 sorted_items = merge_sort(items)
 print(sorted_items)
-sorted_items_reverse = merge_sort(items,True)
-print(sorted_items_reverse)
 
+sorted_items_reverse = merge_sort(items,reverse=True)
+print(sorted_items_reverse)
