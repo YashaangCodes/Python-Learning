@@ -49,11 +49,13 @@ def merge_sort(arr, reverse = False, merge_count = 0, rec_count = 0, rec_level =
 
     return arr, left_merge_count + right_merge_count + 1, left_rec_count + right_rec_count + 1, rec_level + 1
 
+def display(arr,reverse=False):
+    sorted_items_reverse,m_count,r_count,r_level = merge_sort(arr,reverse)
+    print("Reverse Sorted Numbers :",*sorted_items_reverse,f"\nMerge Count : {m_count}\nRecursion Count : {r_count-1}\nRecursion Level : {r_level}\n")
+    return
+
 print("Enter the list with spaces in between (Eg : 4 5 2 9 1):")
 items = list(map(int,input().split()))
 
-sorted_items,m_count,r_count,r_level = merge_sort(items)
-print("Sorted Numbers :",*sorted_items,f"\nMerge Count : {m_count}\nRecursion Count : {r_count-1}\nRecursion Level : {r_level}\n")
-
-sorted_items_reverse,m_count,r_count,r_level = merge_sort(items,reverse=True)
-print("Reverse Sorted Numbers :",*sorted_items_reverse,f"\nMerge Count : {m_count}\nRecursion Count : {r_count-1}\nRecursion Level : {r_level}\n")
+display(items)
+display(items,True)
