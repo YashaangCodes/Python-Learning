@@ -137,4 +137,29 @@ for size in sizes :
 
     quick_time.append(end - start)
 
+# Displaying the Execution time
+
+print(insertion_time)
+print(selection_time)
+print(merge_time)
+print(quick_time)
+
+# Displaying the Graph
+
+plt.figure(figsize=(10,6))
+
+plt.plot(sizes, insertion_time, marker='o', label='Insertion Sort')
+plt.plot(sizes, selection_time, marker='o', label='Selection Sort')
+plt.plot(sizes, merge_time, marker='o', label='Merge Sort')
+plt.plot(sizes, quick_time, marker='o', label='Quick Sort')
+
+plt.xlabel("Number of Elements (n)")
+plt.ylabel("Execution Time (seconds)")
+
+plt.title("Comparison Of Sorting Algorithm")
+
+plt.legend()
+plt.grid(True)
+plt.show()
+
 
